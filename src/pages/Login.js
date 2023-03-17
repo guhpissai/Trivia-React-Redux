@@ -4,6 +4,7 @@ import { getTriviaToken } from '../services/apiTrivia';
 import { SET_LOCAL_STORAGE } from '../helpers/localstorage';
 import logo from '../trivia.png';
 import '../App.css';
+import BtnSettings from '../helpers/BtnSettings';
 
 export default class Login extends Component {
   state = {
@@ -24,6 +25,11 @@ export default class Login extends Component {
     console.log(typeof (response.token));
     SET_LOCAL_STORAGE(response.token);
     history.push('/game');
+  };
+
+  handleSettings = () => {
+    const { history } = this.props;
+    history.push('/config');
   };
 
   render() {
@@ -60,6 +66,7 @@ export default class Login extends Component {
             >
               Play
             </button>
+            <BtnSettings handleSettings={ this.handleSettings } />
           </form>
         </header>
       </div>
