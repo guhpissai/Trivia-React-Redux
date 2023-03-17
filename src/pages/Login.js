@@ -1,11 +1,13 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { connect } from 'react-redux';
 import { getTriviaToken } from '../services/apiTrivia';
 import { SET_LOCAL_STORAGE } from '../helpers/localstorage';
 import logo from '../trivia.png';
+import { getLogin } from '../redux/actions';
 import '../App.css';
 
-export default class Login extends Component {
+class Login extends Component {
   state = {
     name: '',
     email: '',
@@ -19,10 +21,10 @@ export default class Login extends Component {
   };
 
   handleClick = async () => {
-    const { history } = this.props;
+    const { history, dispatch } = this.props;
     const response = await getTriviaToken();
-    console.log(typeof (response.token));
     SET_LOCAL_STORAGE(response.token);
+    dispatch(getLogin(this.state));
     history.push('/game');
   };
 
@@ -67,8 +69,11 @@ export default class Login extends Component {
   }
 }
 
+export default connect()(Login);
+
 Login.propTypes = {
   history: PropTypes.shape({
     push: PropTypes.func.isRequired,
   }).isRequired,
+  dispatch: PropTypes.func.isRequired,
 };
