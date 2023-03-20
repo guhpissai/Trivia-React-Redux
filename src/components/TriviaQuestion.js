@@ -4,9 +4,11 @@ export function TriviaQuestion({ eachQuestion }) {
   if (!eachQuestion) {
     return (<p>Error</p>);
   }
-  const { correct_answer, incorrect_answers, question, category } = eachQuestion;
+  const { question, category } = eachQuestion;
+  const correctAnswer = eachQuestion.correct_answer;
+  const incorrectAnswers = eachQuestion.incorrect_answers;
   const fisherYates = 0.5;
-  const shuffledAnswers = [...incorrect_answers, correct_answer]
+  const shuffledAnswers = [...incorrectAnswers, correctAnswer]
     .sort(() => Math.random() - fisherYates);
   return (
     <>
@@ -20,7 +22,7 @@ export function TriviaQuestion({ eachQuestion }) {
         <li key={ index } data-testid="answer-options">
           <button
             data-testid={
-              answer === correct_answer
+              answer === correctAnswer
                 ? 'correct-answer'
                 : `wrong-answer-${index}`
             }
