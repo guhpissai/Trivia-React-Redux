@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { newQuestions } from '../redux/actions';
+import { newQuestions, getLogin } from '../redux/actions';
 import { getTriviaToken, getTriviaQuestions } from '../services/apiTrivia';
 import { SET_LOCAL_STORAGE } from '../helpers/localstorage';
 import logo from '../trivia.png';
 import '../App.css';
+import BtnSettings from '../helpers/BtnSettings';
 
 class Login extends Component {
   state = {
@@ -26,7 +27,13 @@ class Login extends Component {
     SET_LOCAL_STORAGE('token', response.token);
     const questions = await getTriviaQuestions(response.token);
     dispatch(newQuestions(questions));
+    dispatch(getLogin(this.state));
     history.push('/game');
+  };
+
+  handleSettings = () => {
+    const { history } = this.props;
+    history.push('/config');
   };
 
   render() {
@@ -63,6 +70,7 @@ class Login extends Component {
             >
               Play
             </button>
+            <BtnSettings handleSettings={ this.handleSettings } />
           </form>
         </header>
       </div>

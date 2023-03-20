@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { TriviaQuestion } from '../components/TriviaQuestion';
+import Header from '../components/Header';
 
 class Game extends Component {
   tokenCheck = () => {
@@ -21,6 +22,7 @@ class Game extends Component {
     const first = [questions.results[0]];
     return (
       <>
+        <Header />
         {first.map((question, questionIndex) => (
           <TriviaQuestion key={ questionIndex } eachQuestion={ question } />
         ))}
