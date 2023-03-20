@@ -3,6 +3,7 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { TriviaQuestion } from '../components/TriviaQuestion';
 import Header from '../components/Header';
+import '../Game.css';
 
 class Game extends Component {
   tokenCheck = () => {
@@ -18,15 +19,14 @@ class Game extends Component {
   render() {
     this.tokenCheck();
     const { questions } = this.props;
-    console.log(questions);
     const first = [questions.results[0]];
     return (
-      <>
+      <div className="game">
         <Header />
         {first.map((question, questionIndex) => (
           <TriviaQuestion key={ questionIndex } eachQuestion={ question } />
         ))}
-      </>
+      </div>
     );
   }
 }
