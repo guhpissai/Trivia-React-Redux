@@ -1,4 +1,9 @@
+import PropTypes from 'prop-types';
+
 export function TriviaQuestion({ eachQuestion }) {
+  if (!eachQuestion) {
+    return (<p>Error</p>);
+  }
   const { correct_answer, incorrect_answers, question, category } = eachQuestion;
   const fisherYates = 0.5;
   const shuffledAnswers = [...incorrect_answers, correct_answer]
@@ -27,3 +32,11 @@ export function TriviaQuestion({ eachQuestion }) {
     </>
   );
 }
+
+TriviaQuestion.propTypes = {
+  eachQuestion: PropTypes.shape({
+    correct_answer: PropTypes.string,
+    incorrect_answers: PropTypes.arrayOf(PropTypes.string),
+    category: PropTypes.string,
+  }),
+}.isRequired;

@@ -24,7 +24,6 @@ class Login extends Component {
     const { history, dispatch } = this.props;
     const response = await getTriviaToken();
     SET_LOCAL_STORAGE('token', response.token);
-    SET_LOCAL_STORAGE('response_code', response.response_code);
     const questions = await getTriviaQuestions(response.token);
     dispatch(newQuestions(questions));
     history.push('/game');

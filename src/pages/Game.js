@@ -5,8 +5,8 @@ import { TriviaQuestion } from '../components/TriviaQuestion';
 
 class Game extends Component {
   tokenCheck = () => {
-    const { history } = this.props;
-    const responseCode = JSON.parse(localStorage.getItem('response_code'));
+    const { history, questions } = this.props;
+    const responseCode = questions.response_code;
     const invalidToken = 3;
     if (responseCode === invalidToken) {
       localStorage.clear();
@@ -16,8 +16,9 @@ class Game extends Component {
 
   render() {
     this.tokenCheck();
-    const { questions: { results } } = this.props;
-    const first = [results[0]];
+    const { questions } = this.props;
+    console.log(questions);
+    const first = [questions.results[0]];
     return (
       <>
         {first.map((question, questionIndex) => (
