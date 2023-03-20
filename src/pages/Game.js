@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { TriviaQuestion } from '../components/TriviaQuestion';
+import TriviaQuestion from '../components/TriviaQuestion';
 import Header from '../components/Header';
 
 class Game extends Component {
@@ -18,7 +18,6 @@ class Game extends Component {
   render() {
     this.tokenCheck();
     const { questions } = this.props;
-    console.log(questions);
     const first = [questions.results[0]];
     return (
       <>
