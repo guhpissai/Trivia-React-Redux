@@ -1,13 +1,28 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
+import { TriviaQuestion } from '../components/TriviaQuestion';
 
 class Game extends Component {
+  tokenCheck = () => {
+    const { history } = this.props;
+    const responseCode = JSON.parse(localStorage.getItem('response_code'));
+    const invalidToken = 3;
+    if (responseCode === invalidToken) {
+      localStorage.clear();
+      history.push('/');
+    }
+  };
+
   render() {
+    this.tokenCheck();
     const { questions: { results } } = this.props;
+    const first = [results[0]];
     return (
       <>
-        { results.map((question, index) => <p key={ index }>{ question.question }</p>) }
+        {first.map((question, questionIndex) => (
+          <TriviaQuestion key={ questionIndex } eachQuestion={ question } />
+        ))}
       </>
     );
   }
