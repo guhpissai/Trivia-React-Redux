@@ -1,0 +1,39 @@
+.game {
+  margin: auto;
+  max-width: 960px;
+}
+
+.buttons-container {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 200px;
+}
+
+/* img {
+  width: 160px;
+  border-radius: 100px;
+} */
+
+li {
+  flex: 1 1 200px;
+  list-style: none;
+  margin: 6px auto;
+}
+
+li button {
+  margin: auto;
+  padding: 6px 0;
+  width: 200px;
+}
+
+.correct-answer {
+  border-color: rgb(6, 240, 15);
+  border-style: solid;
+  border-width: 3px;
+}
+
+.wrong-answer {
+  border-color: red;
+  border-style: solid;
+  border-width: 3px;
+}
