@@ -14,7 +14,7 @@ class Timer extends Component {
 
   componentDidMount() {
     const second = 1000;
-    const thirySeconds = 30000;
+    const thirtySeconds = 30000;
 
     const timer = setInterval(() => {
       this.setState((prevState) => ({
@@ -26,7 +26,7 @@ class Timer extends Component {
       clearInterval(timer);
       this.setState({
       });
-    }, thirySeconds);
+    }, thirtySeconds);
   }
 
   componentDidUpdate() {

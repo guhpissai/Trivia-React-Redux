@@ -3,9 +3,16 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Timer from './Timer';
 import '../pages/Game.css';
+import { disabledButton } from '../redux/actions';
 
 class TriviaQuestion extends Component {
+  state = {
+    shuffler: true,
+    questions: [],
+  };
+
   handleClick = (answer) => {
+    const { dispatch } = this.props;
     const correct = 'correct-answer answer-button';
     const wrong = 'wrong-answer answer-button';
     const buttons = document.querySelectorAll('.answer-button');
@@ -16,6 +23,24 @@ class TriviaQuestion extends Component {
         element.className = wrong;
       }
     });
+    dispatch(disabledButton(true));
+  };
+
+  shufflerCondition = () => {
+    const { eachQuestion } = this.props;
+    const { shuffler, questions } = this.state;
+    const correctAnswer = eachQuestion.correct_answer;
+    const incorrectAnswers = eachQuestion.incorrect_answers;
+    const fisherYates = 0.5;
+    if (shuffler) {
+      const shuffledAnswers = [...incorrectAnswers, correctAnswer]
+        .sort(() => Math.random() - fisherYates);
+      this.setState({
+        questions: shuffledAnswers,
+        shuffler: false,
+      });
+      return shuffledAnswers;
+    } return questions;
   };
 
   render() {
@@ -26,10 +51,8 @@ class TriviaQuestion extends Component {
     }
     const { question, category } = eachQuestion;
     const correctAnswer = eachQuestion.correct_answer;
-    const incorrectAnswers = eachQuestion.incorrect_answers;
-    const fisherYates = 0.5;
-    const shuffledAnswers = [...incorrectAnswers, correctAnswer]
-      .sort(() => Math.random() - fisherYates);
+    const shuffledAnswers = this.shufflerCondition();
+    console.log(shuffledAnswers);
     return (
       <>
         <Timer />
@@ -58,6 +81,7 @@ class TriviaQuestion extends Component {
             </li>
           ))}
         </div>
+        { isDisabled && <button data-testid="btn-next">Next</button> }
       </>
     );
   }
