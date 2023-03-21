@@ -102,7 +102,7 @@ class TriviaQuestion extends Component {
           onClick={ this.nextIndex }
         >
           Next
-        </button>
+           </button>
         }
       </>
     );
