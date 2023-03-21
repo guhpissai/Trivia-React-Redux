@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Timer from './Timer';
 import '../pages/Game.css';
-import { disabledButton } from '../redux/actions';
+import { disabledButton, indexChange } from '../redux/actions';
 
 class TriviaQuestion extends Component {
   state = {
@@ -28,6 +28,7 @@ class TriviaQuestion extends Component {
 
   shufflerCondition = () => {
     const { eachQuestion } = this.props;
+    console.log(eachQuestion);
     const { shuffler, questions } = this.state;
     const correctAnswer = eachQuestion.correct_answer;
     const incorrectAnswers = eachQuestion.incorrect_answers;
@@ -43,6 +44,14 @@ class TriviaQuestion extends Component {
     } return questions;
   };
 
+  nextIndex = () => {
+    const { dispatch, index } = this.props;
+    const four = 4;
+    dispatch(indexChange(index + 1));
+    dispatch(disabledButton(false));
+    if (index === four) { dispatch(indexChange(index)); }
+  };
+
   render() {
     const correct = 'correct-answer';
     const { eachQuestion, isDisabled } = this.props;
@@ -52,7 +61,6 @@ class TriviaQuestion extends Component {
     const { question, category } = eachQuestion;
     const correctAnswer = eachQuestion.correct_answer;
     const shuffledAnswers = this.shufflerCondition();
-    console.log(shuffledAnswers);
     return (
       <>
         <Timer />
@@ -81,7 +89,13 @@ class TriviaQuestion extends Component {
             </li>
           ))}
         </div>
-        { isDisabled && <button data-testid="btn-next">Next</button> }
+        { isDisabled
+        && <button
+          data-testid="btn-next"
+          onClick={ this.nextIndex }
+        >
+          Next
+        </button> }
       </>
     );
   }
@@ -96,6 +110,7 @@ TriviaQuestion.propTypes = {
 
 const mapStateToProps = (state) => ({
   isDisabled: state.game.isDisabled,
+  index: state.game.indexQuestions,
 });
 
 export default connect(mapStateToProps)(TriviaQuestion);
