@@ -1,8 +1,9 @@
-import { NEW_QUESTIONS, ISDISABLED_BUTTON } from '../actions';
+import { NEW_QUESTIONS, ISDISABLED_BUTTON, INDEX_QUESTION } from '../actions';
 
 const INITIAL_STATE = {
   questions: [],
   isDisabled: false,
+  indexQuestions: 0,
 };
 
 export const game = (state = INITIAL_STATE, action) => {
@@ -18,6 +19,13 @@ export const game = (state = INITIAL_STATE, action) => {
       ...state,
       isDisabled: action.payload,
     });
+
+  case INDEX_QUESTION:
+    return ({
+      ...state,
+      indexQuestions: action.payload,
+    });
+
   default:
     return state;
   }

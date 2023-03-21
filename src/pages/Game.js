@@ -17,9 +17,8 @@ class Game extends Component {
 
   render() {
     this.tokenCheck();
-    const { questions } = this.props;
-    const first = questions.results[0];
-    console.log(questions);
+    const { questions, index } = this.props;
+    const first = questions.results[index];
     return (
       <>
         <Header />
@@ -33,6 +32,7 @@ class Game extends Component {
 
 const mapStateToProps = (state) => ({
   questions: state.game.questions,
+  index: state.game.indexQuestions,
 });
 
 Game.propTypes = {
