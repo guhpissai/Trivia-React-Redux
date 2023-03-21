@@ -28,7 +28,6 @@ class TriviaQuestion extends Component {
 
   shufflerCondition = () => {
     const { eachQuestion } = this.props;
-    console.log(eachQuestion);
     const { shuffler, questions } = this.state;
     const correctAnswer = eachQuestion.correct_answer;
     const incorrectAnswers = eachQuestion.incorrect_answers;
@@ -47,9 +46,16 @@ class TriviaQuestion extends Component {
   nextIndex = () => {
     const { dispatch, index } = this.props;
     const four = 4;
+    const buttons = document.querySelectorAll('.answer-button');
     dispatch(indexChange(index + 1));
     dispatch(disabledButton(false));
     if (index === four) { dispatch(indexChange(index)); }
+    this.setState({
+      shuffler: true,
+    });
+    buttons.forEach((element) => {
+      element.className = 'answer-button';
+    });
   };
 
   render() {
@@ -89,13 +95,15 @@ class TriviaQuestion extends Component {
             </li>
           ))}
         </div>
-        { isDisabled
+        {
+          isDisabled
         && <button
           data-testid="btn-next"
           onClick={ this.nextIndex }
         >
           Next
-        </button> }
+        </button>
+        }
       </>
     );
   }
