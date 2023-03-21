@@ -1,7 +1,3 @@
-/* refencias: https://upmostly.com/tutorials/settimeout-in-react-components-using-hooks
-https://www.youtube.com/watch?v=KV1ph8CYWi4
-https://www.w3schools.com/jsref/met_win_setinterval.asp
-https://gist.github.com/aerrity/f30411d2f575daa36c74494cf9c65a22 */
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
@@ -24,8 +20,6 @@ class Timer extends Component {
 
     setTimeout(() => {
       clearInterval(timer);
-      this.setState({
-      });
     }, thirtySeconds);
   }
 
@@ -47,4 +41,8 @@ Timer.propTypes = {
   dispatch: PropTypes.func.isRequired,
 };
 
-export default connect()(Timer);
+const mapStateToProps = (state) => ({
+  stopTimer: state.game.questionSelected,
+});
+
+export default connect(mapStateToProps)(Timer);

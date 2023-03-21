@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Timer from './Timer';
 import '../pages/Game.css';
-import { disabledButton, indexChange } from '../redux/actions';
+import { disabledButton, indexChange, questionSelected } from '../redux/actions';
 
 class TriviaQuestion extends Component {
   state = {
@@ -24,6 +24,7 @@ class TriviaQuestion extends Component {
       }
     });
     dispatch(disabledButton(true));
+    dispatch(questionSelected());
   };
 
   shufflerCondition = () => {
@@ -97,12 +98,14 @@ class TriviaQuestion extends Component {
         </div>
         {
           isDisabled
-        && <button
-          data-testid="btn-next"
-          onClick={ this.nextIndex }
-        >
-          Next
-           </button>
+        && (
+          <button
+            data-testid="btn-next"
+            onClick={ this.nextIndex }
+          >
+            Next
+          </button>
+        )
         }
       </>
     );
