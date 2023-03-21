@@ -18,13 +18,14 @@ class Game extends Component {
   render() {
     this.tokenCheck();
     const { questions } = this.props;
-    const first = [questions.results[0]];
+    const first = questions.results[0];
+    console.log(questions);
     return (
       <>
         <Header />
-        {first.map((question, questionIndex) => (
-          <TriviaQuestion key={ questionIndex } eachQuestion={ question } />
-        ))}
+
+        <TriviaQuestion eachQuestion={ first } />
+
       </>
     );
   }

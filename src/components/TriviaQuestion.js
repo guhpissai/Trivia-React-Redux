@@ -3,15 +3,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Timer from './Timer';
 import '../pages/Game.css';
+import { disabledButton } from '../redux/actions';
 
 class TriviaQuestion extends Component {
   state = {
-    nextButton: false,
+    shuffler: true,
+    questions: [],
   };
 
   handleClick = (answer) => {
-    const correct = 'correct-answer';
-    const wrong = 'wrong-answer';
+    const { dispatch } = this.props;
+    const correct = 'correct-answer answer-button';
+    const wrong = 'wrong-answer answer-button';
     const buttons = document.querySelectorAll('.answer-button');
     buttons.forEach((element) => {
       if (element.value === answer) {
@@ -20,13 +23,27 @@ class TriviaQuestion extends Component {
         element.className = wrong;
       }
     });
-    this.setState({
-      nextButton: true,
-    });
+    dispatch(disabledButton(true));
+  };
+
+  shufflerCondition = () => {
+    const { eachQuestion } = this.props;
+    const { shuffler, questions } = this.state;
+    const correctAnswer = eachQuestion.correct_answer;
+    const incorrectAnswers = eachQuestion.incorrect_answers;
+    const fisherYates = 0.5;
+    if (shuffler) {
+      const shuffledAnswers = [...incorrectAnswers, correctAnswer]
+        .sort(() => Math.random() - fisherYates);
+      this.setState({
+        questions: shuffledAnswers,
+        shuffler: false,
+      });
+      return shuffledAnswers;
+    } return questions;
   };
 
   render() {
-    const { nextButton } = this.state;
     const correct = 'correct-answer';
     const { eachQuestion, isDisabled } = this.props;
     if (!eachQuestion) {
@@ -34,10 +51,9 @@ class TriviaQuestion extends Component {
     }
     const { question, category } = eachQuestion;
     const correctAnswer = eachQuestion.correct_answer;
-    const incorrectAnswers = eachQuestion.incorrect_answers;
-    const fisherYates = 0.5;
-    const shuffledAnswers = [...incorrectAnswers, correctAnswer]
-      .sort(() => Math.random() - fisherYates);
+    const shuffledAnswers = this.shufflerCondition();
+    console.log(shuffledAnswers);
+    const nextCondition = isDisabled === true;
     return (
       <>
         <Timer />
@@ -65,8 +81,8 @@ class TriviaQuestion extends Component {
               </button>
             </li>
           ))}
-          { nextButton && <button data-testid="btn-next">Next</button> }
         </div>
+        { nextCondition && <button data-testid="btn-next">Next</button> }
       </>
     );
   }
