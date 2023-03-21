@@ -53,7 +53,6 @@ class TriviaQuestion extends Component {
     const correctAnswer = eachQuestion.correct_answer;
     const shuffledAnswers = this.shufflerCondition();
     console.log(shuffledAnswers);
-    const nextCondition = isDisabled === true;
     return (
       <>
         <Timer />
@@ -82,7 +81,7 @@ class TriviaQuestion extends Component {
             </li>
           ))}
         </div>
-        { nextCondition && <button data-testid="btn-next">Next</button> }
+        { isDisabled && <button data-testid="btn-next">Next</button> }
       </>
     );
   }
