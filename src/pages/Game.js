@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { TriviaQuestion } from '../components/TriviaQuestion';
+import TriviaQuestion from '../components/TriviaQuestion';
 import Header from '../components/Header';
 import '../Game.css';
 
@@ -18,21 +18,22 @@ class Game extends Component {
 
   render() {
     this.tokenCheck();
-    const { questions } = this.props;
-    const first = [questions.results[0]];
+    const { questions, index } = this.props;
+    const first = questions.results[index];
     return (
       <div className="game">
         <Header />
-        {first.map((question, questionIndex) => (
-          <TriviaQuestion key={ questionIndex } eachQuestion={ question } />
-        ))}
-      </div>
+
+        <TriviaQuestion eachQuestion={ first } />
+
+      </>
     );
   }
 }
 
 const mapStateToProps = (state) => ({
   questions: state.game.questions,
+  index: state.game.indexQuestions,
 });
 
 Game.propTypes = {

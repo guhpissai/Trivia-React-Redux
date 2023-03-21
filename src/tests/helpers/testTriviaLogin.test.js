@@ -1,8 +1,10 @@
 import { screen, waitFor } from '@testing-library/react';
 import userEvent from '@testing-library/user-event';
 import App from '../../App';
-import renderWithRouterAndRedux, { renderWithRouter } from './renderWithRouterAndRedux';
+import renderWithRouterAndRedux from './renderWithRouterAndRedux';
 
+const sleep = (milliseconds) => (
+  new Promise((resolve) => setTimeout(resolve, milliseconds))); 
 describe('Testando Login', () => {
   test('Testa elementos da tela inicial', async () => {
     const { history } = renderWithRouterAndRedux(<App />);
@@ -65,10 +67,12 @@ describe('Testando Login', () => {
 
     jest.spyOn(Storage.prototype, 'setItem');
     Storage.prototype.setItem = jest.fn();
-
+    await sleep(3000);
     await waitFor(() => expect(localStorage.setItem).toHaveBeenCalledTimes(1));
 
     const { pathname } = history.location;
     expect(pathname).toBe('/game');
+    // expect(nameLogin).toBeInTheDocument();
+
   });
 });
