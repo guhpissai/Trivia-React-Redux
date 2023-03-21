@@ -14,6 +14,7 @@ export const login = (state = INITIAL_STATE, action) => {
       ...state,
       name: action.payload.name,
       gravatarEmail: action.payload.email,
+      // score: action.payload.score,
     };
   }
   default:

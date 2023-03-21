@@ -5,9 +5,13 @@ import Timer from './Timer';
 import '../pages/Game.css';
 
 class TriviaQuestion extends Component {
+  state = {
+    nextButton: false,
+  };
+
   handleClick = (answer) => {
-    const correct = 'correct-answer answer-button';
-    const wrong = 'wrong-answer answer-button';
+    const correct = 'correct-answer';
+    const wrong = 'wrong-answer';
     const buttons = document.querySelectorAll('.answer-button');
     buttons.forEach((element) => {
       if (element.value === answer) {
@@ -16,9 +20,13 @@ class TriviaQuestion extends Component {
         element.className = wrong;
       }
     });
+    this.setState({
+      nextButton: true,
+    });
   };
 
   render() {
+    const { nextButton } = this.state;
     const correct = 'correct-answer';
     const { eachQuestion, isDisabled } = this.props;
     if (!eachQuestion) {
@@ -57,6 +65,7 @@ class TriviaQuestion extends Component {
               </button>
             </li>
           ))}
+          { nextButton && <button data-testid="btn-next">Next</button> }
         </div>
       </>
     );

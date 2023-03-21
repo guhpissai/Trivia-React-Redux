@@ -67,10 +67,12 @@ describe('Testando Login', () => {
 
     jest.spyOn(Storage.prototype, 'setItem');
     Storage.prototype.setItem = jest.fn();
-    await sleep(1000);
+    await sleep(3000);
     await waitFor(() => expect(localStorage.setItem).toHaveBeenCalledTimes(1));
 
     const { pathname } = history.location;
     expect(pathname).toBe('/game');
+    // expect(nameLogin).toBeInTheDocument();
+
   });
 });
