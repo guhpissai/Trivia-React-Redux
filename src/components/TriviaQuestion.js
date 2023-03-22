@@ -7,6 +7,7 @@ import {
   disabledButton,
   indexChange,
   playerScore,
+  hits,
 } from '../redux/actions';
 
 class TriviaQuestion extends Component {
@@ -19,12 +20,13 @@ class TriviaQuestion extends Component {
 
   scorePlayer = (answer, target) => {
     const { seconds } = this.state;
-    const { eachQuestion } = this.props;
+    const { eachQuestion, dispatch } = this.props;
     const correctAnswer = target;
     const { difficulty } = eachQuestion;
     const ten = 10;
     const three = 3;
     if (correctAnswer === answer) {
+      dispatch(hits());
       if (difficulty === 'easy') {
         return ten + seconds;
       }
@@ -111,9 +113,9 @@ class TriviaQuestion extends Component {
   render() {
     const correct = 'correct-answer';
     const { eachQuestion, isDisabled } = this.props;
-    // if (!eachQuestion) {
-    //   return (<p>Error</p>);
-    // }
+    if (!eachQuestion) {
+      return (<p>Error</p>);
+    }
     const { question, category } = eachQuestion;
     const correctAnswer = eachQuestion.correct_answer;
     const shuffledAnswers = this.shufflerCondition();
