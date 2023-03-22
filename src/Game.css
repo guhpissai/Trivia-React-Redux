@@ -1,4 +1,5 @@
 .game {
+
   /* background-image: linear-gradient(#3590f3, #1b6bc0); */
   background-color: #faf6fe;
   border-radius: 20px;
@@ -6,83 +7,83 @@
   margin: 40px auto;
   max-width: 900px;
   padding: 40px;
- }
- 
- 
- .background-game {
+}
+
+
+.background-game {
+
   /* background-image: url('./images/background.png'); */
   background-color: #3590f3;
   height: 980px;
   margin: auto;
- }
- 
- .game-container {
+}
+
+.game-container {
+  color: black;
   display: flex;
   justify-content: space-between;
   margin: 40px 0;
-  color: #000000;
- }
+}
 
- .game-container button {
-  background-color: #227CDD;
-  color: white;
- }
+.game-container h3 {
+  color: #0c60bb;
+}
 
- .game-container h3 {
-  color: #0C60BB;
- }
-
- .game-container h2 {
+.game-container h2 {
   color: black;
- }
- 
- .question-container {
+}
+
+.question-container {
   max-width: 400px;
- }
- 
- .buttons-container {
+}
+
+.buttons-container {
   display: flex;
   flex-wrap: wrap;
   margin: 0 10px;
   max-width: 320px;
- }
- 
- .answer-button {
+}
+
+.answer-button {
   color: #4867e6;
   font-weight: 700;
- }
+}
 
- .next-button {
-  width: 300px;
+.next-button {
   margin: 20px auto;
- }
- 
- li {
+  width: 300px;
+}
+
+li {
   list-style: none;
   margin: 6px auto;
- }
- 
- li button {
+}
+
+li button {
   box-shadow: 0 8px 10px #3a3a3a80;
   margin: auto;
   padding: 12px 0;
   width: 300px;
- }
- 
- .correct-answer {
+}
+
+.correct-answer {
   border-color: rgb(6, 240, 15);
   border-style: solid;
   border-width: 3px;
- }
- 
- .wrong-answer {
+}
+
+.wrong-answer {
   border-color: red;
   border-style: solid;
   border-width: 3px;
- }
+}
 
- .seconds {
+.seconds {
   font-size: 1.125rem;
-  font-weight: bold;
- }
- 
+  font-weight: 700;
+}
+
+.game-container button {
+  background-color: #227cdd;
+  color: white;
+}
