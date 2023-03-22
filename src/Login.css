@@ -3,27 +3,37 @@ body {
   font-family: Roboto , sans-serif;
   margin: 0;
   padding: 0;
-}
-h1, h2, h3, p, button {
+ }
+ 
+ 
+ h1, h2, h3, p, button {
   margin: 0;
-}
-h3 {
+ }
+ 
+ 
+ h3 {
   font-size: 2rem;
   margin: 4px;
-}
-h2 {
+ }
+ 
+ 
+ h2 {
   font-size: 1.4rem;
   margin: 0 4px;
   margin-top: 20px;
-}
-.login-form {
+ }
+ 
+ 
+ .login-form {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
   margin-top: 20px;
   max-width: 260px;
-}
-.login-form label, input, button {
+ }
+ 
+ 
+ .login-form label, input, button {
   border-radius: 8px;
   border-style: none;
   box-sizing: border-box;
@@ -32,52 +42,83 @@ h2 {
   margin: 0 auto;
   padding: 8px 0;
   width: 100%;
-}
-.login-form button {
+ }
+ 
+ 
+ .login-form button {
   margin-top: 10px;
-}
-.App {
+ }
+ 
+ 
+ 
+ 
+ .App {
   text-align: center;
-}
-.App-logo {
+ }
+ 
+ 
+ .App-logo {
   height: 15vmin;
   pointer-events: none;
-}
-.red-border {
+ }
+ 
+ 
+ .red-border {
   border: 1px solid red;
-}
-.green-border {
+ }
+ 
+ 
+ .green-border {
   border: 1px solid green;
-}
-@media ( prefers-reduced-motion : no-preference ) {
+ }
+ 
+ 
+ @media ( prefers-reduced-motion : no-preference ) {
+ 
+ 
   .App-logo {
     animation: shake infinite 0.82s cubic-bezier(0.36, 0.07, 0.19, 0.97) both;
   }
-}
-.App-header {
+ }
+ 
+ 
+ .App-header {
   align-items: center;
-  background-color: #3590F3;
+  background-color: #3590f3;
   color: white;
   display: flex;
   flex-direction: column;
   font-size: calc(10px + 2vmin);
   justify-content: center;
   min-height: 100vh;
-}
-.App-link {
-  color: #61DAFB;
-}
-@keyframes shake {
+ }
+ 
+ 
+ .App-link {
+  color: #61dafb;
+ }
+ 
+ 
+ @keyframes shake {
+ 
+ 
   10%, 90% {
     transform: translate3d(-1px, 0, 0);
   }
+ 
+ 
   20%, 80% {
     transform: translate3d(2px, 0, 0);
   }
+ 
+ 
   30%, 50%, 70% {
     transform: translate3d(-4px, 0, 0);
   }
+ 
+ 
   40%, 60% {
     transform: translate3d(4px, 0, 0);
   }
-}
+ }
+ 
