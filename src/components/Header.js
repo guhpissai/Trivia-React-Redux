@@ -18,6 +18,7 @@ class Header extends Component {
           {userName}
         </p>
         <p data-testid="header-score">{ score }</p>
+        <p data-testid="feedback-text">Menssagem feedback</p>
       </div>
     );
   }

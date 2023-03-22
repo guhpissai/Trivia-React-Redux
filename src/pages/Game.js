@@ -18,13 +18,13 @@ class Game extends Component {
 
   render() {
     this.tokenCheck();
-    const { questions, index } = this.props;
+    const { questions, index, history } = this.props;
     console.log(index);
     const first = questions.results[index];
     return (
       <div className="game">
         <Header />
-        <TriviaQuestion eachQuestion={ first } />
+        <TriviaQuestion eachQuestion={ first } history={ history } />
       </div>
     );
   }
