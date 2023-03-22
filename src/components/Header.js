@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import md5 from 'crypto-js/md5';
+import '../Header.css';
 import { connect } from 'react-redux';
 
 class Header extends Component {

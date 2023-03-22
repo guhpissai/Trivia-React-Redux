@@ -2,7 +2,7 @@ import PropTypes from 'prop-types';
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Timer from './Timer';
-import '../pages/Game.css';
+import '../Game.css';
 import {
   disabledButton,
   indexChange,

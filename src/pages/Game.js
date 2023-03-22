@@ -19,12 +19,11 @@ class Game extends Component {
   render() {
     this.tokenCheck();
     const { questions, index, history } = this.props;
-    console.log(index);
     const first = questions.results[index];
     return (
       <div className="background-game">
+        <Header />
         <div className="game">
-          <Header />
           <TriviaQuestion eachQuestion={ first } history={ history } />
         </div>
       </div>
