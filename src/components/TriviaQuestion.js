@@ -16,6 +16,28 @@ class TriviaQuestion extends Component {
     seconds: 30,
   };
 
+  scorePlayer = (answer) => {
+    const { seconds } = this.state;
+    const { eachQuestion } = this.props;
+    const correctAnswer = eachQuestion.correct_answer;
+    const { difficulty } = eachQuestion;
+    console.log(difficulty);
+    console.log(seconds);
+    const ten = 10;
+    const three = 3;
+    if (correctAnswer === answer) {
+      if (difficulty === 'easy') {
+        return ten + seconds;
+      }
+      if (difficulty === 'medium') {
+        return ten + (seconds * 2);
+      }
+      if (difficulty === 'hard') {
+        return ten + (seconds * three);
+      }
+    } return 0;
+  };
+
   handleClick = (answer) => {
     const { dispatch } = this.props;
     const correct = 'correct-answer answer-button';
@@ -32,6 +54,8 @@ class TriviaQuestion extends Component {
     this.setState({
       isToClear: true,
     });
+    this.scorePlayer(answer);
+    console.log(this.scorePlayer(answer));
   };
 
   funcTimer = () => {
@@ -40,7 +64,6 @@ class TriviaQuestion extends Component {
     const myTimeout = setInterval(() => {
       const { seconds, isToClear } = this.state;
       if (seconds > 0 && isToClear === false) {
-        console.log('ok');
         this.setState((prevState) => ({
           seconds: prevState.seconds - 1,
         }));
@@ -69,12 +92,12 @@ class TriviaQuestion extends Component {
   };
 
   nextIndex = () => {
-    const { dispatch, index } = this.props;
+    const { dispatch, index, history } = this.props;
     const four = 4;
     const buttons = document.querySelectorAll('.answer-button');
     dispatch(indexChange(index + 1));
     dispatch(disabledButton(false));
-    if (index === four) { dispatch(indexChange(index)); }
+    if (index === four) { history.push('/feedback'); }
     this.setState({
       shuffler: true,
       seconds: 30,
@@ -145,6 +168,9 @@ TriviaQuestion.propTypes = {
     correct_answer: PropTypes.string,
     incorrect_answers: PropTypes.arrayOf(PropTypes.string),
     category: PropTypes.string,
+  }),
+  history: PropTypes.shape({
+    push: PropTypes.func,
   }),
 }.isRequired;
 

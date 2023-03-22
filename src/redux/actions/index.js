@@ -4,6 +4,7 @@ export const ISDISABLED_BUTTON = 'ISDISABLED_BUTTON';
 export const INDEX_QUESTION = 'INDEX_QUESTION';
 export const QUESTION_SELECTED = 'QUESTION_SELECTED';
 export const NEXT_TIMER = 'NEXT_TIMER';
+export const SCORE = 'SCORE';
 
 export const newQuestions = (payload) => ({
   type: NEW_QUESTIONS,
@@ -31,4 +32,8 @@ export const questionSelected = () => ({
 
 export const nextTimer = () => ({
   type: NEXT_TIMER,
+});
+
+export const scoreHeader = () => ({
+  type: SCORE,
 });
