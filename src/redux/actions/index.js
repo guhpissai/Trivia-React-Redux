@@ -5,6 +5,7 @@ export const INDEX_QUESTION = 'INDEX_QUESTION';
 export const QUESTION_SELECTED = 'QUESTION_SELECTED';
 export const NEXT_TIMER = 'NEXT_TIMER';
 export const PLAYER_SCORE = 'PLAYER_SCORE';
+export const HITS = 'HITS';
 
 export const newQuestions = (payload) => ({
   type: NEW_QUESTIONS,
@@ -37,4 +38,8 @@ export const nextTimer = () => ({
 export const playerScore = (payload) => ({
   type: PLAYER_SCORE,
   payload,
+});
+
+export const hits = () => ({
+  type: HITS,
 });

@@ -1,4 +1,4 @@
-import { GET_LOGIN, PLAYER_SCORE } from '../actions';
+import { GET_LOGIN, PLAYER_SCORE, HITS } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -15,11 +15,15 @@ export const player = (state = INITIAL_STATE, action) => {
       name: action.payload.name,
       gravatarEmail: action.payload.email,
     });
-
   case PLAYER_SCORE:
     return {
       ...state,
       score: state.score + action.payload,
+    };
+  case HITS:
+    return {
+      ...state,
+      assertions: state.assertions + 1,
     };
   default:
     return state;
