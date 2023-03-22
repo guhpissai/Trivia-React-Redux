@@ -3,6 +3,7 @@ export const GET_LOGIN = 'GET_LOGIN';
 export const ISDISABLED_BUTTON = 'ISDISABLED_BUTTON';
 export const INDEX_QUESTION = 'INDEX_QUESTION';
 export const QUESTION_SELECTED = 'QUESTION_SELECTED';
+export const NEXT_TIMER = 'NEXT_TIMER';
 
 export const newQuestions = (payload) => ({
   type: NEW_QUESTIONS,
@@ -26,4 +27,8 @@ export const indexChange = (payload) => ({
 
 export const questionSelected = () => ({
   type: QUESTION_SELECTED,
+});
+
+export const nextTimer = () => ({
+  type: NEXT_TIMER,
 });

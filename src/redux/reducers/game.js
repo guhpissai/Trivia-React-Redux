@@ -1,13 +1,15 @@
 import { NEW_QUESTIONS,
   ISDISABLED_BUTTON,
   INDEX_QUESTION,
-  QUESTION_SELECTED } from '../actions';
+  QUESTION_SELECTED,
+  NEXT_TIMER } from '../actions';
 
 const INITIAL_STATE = {
   questions: [],
   isDisabled: false,
   indexQuestions: 0,
   questionSelected: false,
+  nextBoolean: false,
 };
 
 export const game = (state = INITIAL_STATE, action) => {
@@ -34,6 +36,12 @@ export const game = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       questionSelected: !state.questionSelected,
+    };
+
+  case NEXT_TIMER:
+    return {
+      ...state,
+      nextBoolean: !state.nextBoolean,
     };
 
   default:

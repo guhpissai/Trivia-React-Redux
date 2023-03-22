@@ -3,12 +3,18 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Timer from './Timer';
 import '../pages/Game.css';
-import { disabledButton, indexChange, questionSelected } from '../redux/actions';
+import {
+  disabledButton,
+  indexChange,
+  nextTimer,
+  questionSelected } from '../redux/actions';
 
 class TriviaQuestion extends Component {
   state = {
     shuffler: true,
     questions: [],
+    isToClear: false,
+    seconds: 30,
   };
 
   handleClick = (answer) => {
@@ -25,6 +31,26 @@ class TriviaQuestion extends Component {
     });
     dispatch(disabledButton(true));
     dispatch(questionSelected());
+    this.setState({
+      isToClear: true,
+    });
+  };
+
+  funcTimer = () => {
+    const second = 1000;
+    const { dispatch } = this.props;
+    const myTimeout = setInterval(() => {
+      const { seconds, isToClear } = this.state;
+      if (seconds > 0 && isToClear === false) {
+        console.log('ok');
+        this.setState((prevState) => ({
+          seconds: prevState.seconds - 1,
+        }));
+      } else {
+        dispatch(disabledButton(true));
+        clearInterval(myTimeout);
+      }
+    }, second);
   };
 
   shufflerCondition = () => {
@@ -53,10 +79,14 @@ class TriviaQuestion extends Component {
     if (index === four) { dispatch(indexChange(index)); }
     this.setState({
       shuffler: true,
+      seconds: 30,
+      isToClear: false,
     });
     buttons.forEach((element) => {
       element.className = 'answer-button';
     });
+    dispatch(nextTimer());
+    this.funcTimer();
   };
 
   render() {
@@ -68,9 +98,11 @@ class TriviaQuestion extends Component {
     const { question, category } = eachQuestion;
     const correctAnswer = eachQuestion.correct_answer;
     const shuffledAnswers = this.shufflerCondition();
+    const { seconds } = this.state;
     return (
       <>
-        <Timer />
+        <Timer funcTimer={ this.funcTimer } />
+        <div>{seconds}</div>
         <h3 data-testid="question-category">
           {category}
         </h3>
