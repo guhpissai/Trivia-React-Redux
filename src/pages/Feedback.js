@@ -48,6 +48,9 @@ class Feedback extends Component {
 }
 
 Feedback.propTypes = {
+  history: PropTypes.shape({
+    push: PropTypes.func,
+  }).isRequired,
   assertions: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
 };
@@ -58,9 +61,3 @@ const mapStateToProps = (state) => ({
 });
 
 export default connect(mapStateToProps)(Feedback);
-
-Feedback.propTypes = {
-  history: PropTypes.shape({
-    push: PropTypes.func,
-  }).isRequired,
-};
