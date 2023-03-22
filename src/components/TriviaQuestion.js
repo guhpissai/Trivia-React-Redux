@@ -111,9 +111,9 @@ class TriviaQuestion extends Component {
   render() {
     const correct = 'correct-answer';
     const { eachQuestion, isDisabled } = this.props;
-    // if (!eachQuestion) {
-    //   return (<p>Error</p>);
-    // }
+    if (!eachQuestion) {
+      return (<p>Error</p>);
+    }
     const { question, category } = eachQuestion;
     const correctAnswer = eachQuestion.correct_answer;
     const shuffledAnswers = this.shufflerCondition();
