@@ -1,5 +1,5 @@
 .header-background {
-  background-color: white;
+  background-color: #3590f3;
   padding: 20px 0;
  }
  
@@ -16,5 +16,10 @@
   justify-content: space-between;
   margin: 0 auto;
   max-width: 960px;
+ }
+
+ .header img, p{
+  margin: 0 10px;
+  text-align: center;
  }
  

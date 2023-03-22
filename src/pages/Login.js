@@ -42,7 +42,7 @@ class Login extends Component {
       <div className="App">
         <header className="App-header">
           <img src={ logo } className="App-logo" alt="logo" />
-          <form className='"login-form'>
+          <form className="login-form">
             <label>
               <input
                 type="text"

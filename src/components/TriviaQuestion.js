@@ -123,7 +123,7 @@ class TriviaQuestion extends Component {
     return (
       <div>
         <Timer funcTimer={ this.funcTimer } />
-        <p>{seconds}</p>
+        <p className="seconds">{seconds}</p>
         <div className="game-container">
           <div className="question-container">
             <h3 data-testid="question-category">
@@ -154,10 +154,8 @@ class TriviaQuestion extends Component {
                 </button>
               </li>
             ))}
-          </div>
-        </div>
-        {
-          isDisabled
+            {
+              isDisabled
         && (
           <button
             className="next-button"
@@ -167,7 +165,9 @@ class TriviaQuestion extends Component {
             Next
           </button>
         )
-        }
+            }
+          </div>
+        </div>
       </div>
     );
   }
