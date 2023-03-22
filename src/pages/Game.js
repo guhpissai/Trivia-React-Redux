@@ -22,9 +22,11 @@ class Game extends Component {
     console.log(index);
     const first = questions.results[index];
     return (
-      <div className="game">
-        <Header />
-        <TriviaQuestion eachQuestion={ first } history={ history } />
+      <div className="background-game">
+        <div className="game">
+          <Header />
+          <TriviaQuestion eachQuestion={ first } history={ history } />
+        </div>
       </div>
     );
   }

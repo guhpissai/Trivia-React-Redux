@@ -8,17 +8,19 @@ class Header extends Component {
     const { email, userName, score } = this.props;
     const hash = md5(email).toString();
     return (
-      <div>
-        <img
-          data-testid="header-profile-picture"
-          src={ `https://www.gravatar.com/avatar/${hash}` }
-          alt="Imagem do Usuario"
-        />
-        <p data-testid="header-player-name">
-          {userName}
-        </p>
-        <p data-testid="header-score">{ score }</p>
-        <p data-testid="feedback-text">Menssagem feedback</p>
+      <div className="header-background">
+        <div className="header">
+          <img
+            data-testid="header-profile-picture"
+            src={ `https://www.gravatar.com/avatar/${hash}` }
+            alt="Imagem do Usuario"
+          />
+          <p data-testid="header-player-name">
+            {userName}
+          </p>
+          <p data-testid="header-score">{ score }</p>
+          <p data-testid="feedback-text">Menssagem feedback</p>
+        </div>
       </div>
     );
   }

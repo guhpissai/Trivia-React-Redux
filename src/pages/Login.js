@@ -5,7 +5,7 @@ import { newQuestions, getLogin } from '../redux/actions';
 import { getTriviaToken, getTriviaQuestions } from '../services/apiTrivia';
 import { SET_LOCAL_STORAGE } from '../helpers/localstorage';
 import logo from '../trivia.png';
-import '../App.css';
+import '../Login.css';
 import BtnSettings from '../helpers/BtnSettings';
 
 class Login extends Component {
@@ -42,7 +42,7 @@ class Login extends Component {
       <div className="App">
         <header className="App-header">
           <img src={ logo } className="App-logo" alt="logo" />
-          <form>
+          <form className='"login-form'>
             <label>
               <input
                 type="text"
