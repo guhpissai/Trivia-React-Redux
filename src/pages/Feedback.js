@@ -29,18 +29,18 @@ class Feedback extends Component {
           <p data-testid="feedback-total-score">{ score }</p>
           <p data-testid="feedback-total-question">{ assertions }</p>
         </div>
-        <butoon
+        <button
           data-testid="btn-play-again"
           onClick={ this.handleAgain }
         >
           Play Again
-        </butoon>
-        <butoon
+        </button>
+        <button
           data-testid="btn-ranking"
           onClick={ this.handleRanking }
         >
-          Play Again
-        </butoon>
+          Ver ranking
+        </button>
       </div>
     );
   }
