@@ -19,9 +19,4 @@ Timer.propTypes = {
   funcTimer: PropTypes.func.isRequired,
 };
 
-const mapStateToProps = (state) => ({
-  stopTimer: state.game.questionSelected,
-  nextTimer: state.game.nextBoolean,
-});
-
-export default connect(mapStateToProps)(Timer);
+export default connect()(Timer);

@@ -6,8 +6,7 @@ import '../pages/Game.css';
 import {
   disabledButton,
   indexChange,
-  nextTimer,
-  questionSelected } from '../redux/actions';
+} from '../redux/actions';
 
 class TriviaQuestion extends Component {
   state = {
@@ -30,7 +29,6 @@ class TriviaQuestion extends Component {
       }
     });
     dispatch(disabledButton(true));
-    dispatch(questionSelected());
     this.setState({
       isToClear: true,
     });
@@ -85,7 +83,6 @@ class TriviaQuestion extends Component {
     buttons.forEach((element) => {
       element.className = 'answer-button';
     });
-    dispatch(nextTimer());
     this.funcTimer();
   };
 
