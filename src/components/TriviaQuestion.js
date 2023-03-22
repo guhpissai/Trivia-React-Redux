@@ -6,6 +6,7 @@ import '../pages/Game.css';
 import {
   disabledButton,
   indexChange,
+  playerScore,
 } from '../redux/actions';
 
 class TriviaQuestion extends Component {
@@ -16,13 +17,11 @@ class TriviaQuestion extends Component {
     seconds: 30,
   };
 
-  scorePlayer = (answer) => {
+  scorePlayer = (answer, target) => {
     const { seconds } = this.state;
     const { eachQuestion } = this.props;
-    const correctAnswer = eachQuestion.correct_answer;
+    const correctAnswer = target;
     const { difficulty } = eachQuestion;
-    console.log(difficulty);
-    console.log(seconds);
     const ten = 10;
     const three = 3;
     if (correctAnswer === answer) {
@@ -38,7 +37,7 @@ class TriviaQuestion extends Component {
     } return 0;
   };
 
-  handleClick = (answer) => {
+  handleClick = (answer, target) => {
     const { dispatch } = this.props;
     const correct = 'correct-answer answer-button';
     const wrong = 'wrong-answer answer-button';
@@ -54,8 +53,8 @@ class TriviaQuestion extends Component {
     this.setState({
       isToClear: true,
     });
-    this.scorePlayer(answer);
-    console.log(this.scorePlayer(answer));
+    const score = this.scorePlayer(answer, target);
+    dispatch(playerScore(score));
   };
 
   funcTimer = () => {
@@ -134,7 +133,7 @@ class TriviaQuestion extends Component {
             <li key={ index } data-testid="answer-options">
               <button
                 className="answer-button"
-                onClick={ () => this.handleClick(correctAnswer) }
+                onClick={ ({ target }) => this.handleClick(correctAnswer, target.value) }
                 value={ answer }
                 data-testid={
                   answer === correctAnswer
