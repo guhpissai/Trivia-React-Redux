@@ -121,38 +121,46 @@ class TriviaQuestion extends Component {
     const shuffledAnswers = this.shufflerCondition();
     const { seconds } = this.state;
     return (
-      <>
+      <div>
         <Timer funcTimer={ this.funcTimer } />
-        <div>{seconds}</div>
-        <h3 data-testid="question-category">
-          {category}
-        </h3>
-        <h2 data-testid="question-text">
-          {question}
-        </h2>
-        <div className="buttons-container">
-          {shuffledAnswers.map((answer, index) => (
-            <li key={ index } data-testid="answer-options">
-              <button
-                className="answer-button"
-                onClick={ ({ target }) => this.handleClick(correctAnswer, target.value) }
-                value={ answer }
-                data-testid={
-                  answer === correctAnswer
-                    ? correct
-                    : `wrong-answer-${index}`
-                }
-                disabled={ isDisabled }
-              >
-                { answer }
-              </button>
-            </li>
-          ))}
+        <p>{seconds}</p>
+        <div className="game-container">
+          <div className="question-container">
+            <h3 data-testid="question-category">
+              {category}
+            </h3>
+            <h2 data-testid="question-text">
+              {question}
+            </h2>
+          </div>
+          <div className="buttons-container">
+            {shuffledAnswers.map((answer, index) => (
+              <li key={ index } data-testid="answer-options">
+                <button
+                  className="answer-button"
+                  onClick={ ({ target }) => this.handleClick(
+                    correctAnswer,
+                    target.value,
+                  ) }
+                  value={ answer }
+                  data-testid={
+                    answer === correctAnswer
+                      ? correct
+                      : `wrong-answer-${index}`
+                  }
+                  disabled={ isDisabled }
+                >
+                  { answer }
+                </button>
+              </li>
+            ))}
+          </div>
         </div>
         {
           isDisabled
         && (
           <button
+            className="next-button"
             data-testid="btn-next"
             onClick={ this.nextIndex }
           >
@@ -160,7 +168,7 @@ class TriviaQuestion extends Component {
           </button>
         )
         }
-      </>
+      </div>
     );
   }
 }
