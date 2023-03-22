@@ -3,15 +3,41 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import Timer from './Timer';
 import '../pages/Game.css';
-import { disabledButton, indexChange } from '../redux/actions';
+import {
+  disabledButton,
+  indexChange,
+  playerScore,
+} from '../redux/actions';
 
 class TriviaQuestion extends Component {
   state = {
     shuffler: true,
     questions: [],
+    isToClear: false,
+    seconds: 30,
   };
 
-  handleClick = (answer) => {
+  scorePlayer = (answer, target) => {
+    const { seconds } = this.state;
+    const { eachQuestion } = this.props;
+    const correctAnswer = target;
+    const { difficulty } = eachQuestion;
+    const ten = 10;
+    const three = 3;
+    if (correctAnswer === answer) {
+      if (difficulty === 'easy') {
+        return ten + seconds;
+      }
+      if (difficulty === 'medium') {
+        return ten + (seconds * 2);
+      }
+      if (difficulty === 'hard') {
+        return ten + (seconds * three);
+      }
+    } return 0;
+  };
+
+  handleClick = (answer, target) => {
     const { dispatch } = this.props;
     const correct = 'correct-answer answer-button';
     const wrong = 'wrong-answer answer-button';
@@ -24,6 +50,27 @@ class TriviaQuestion extends Component {
       }
     });
     dispatch(disabledButton(true));
+    this.setState({
+      isToClear: true,
+    });
+    const score = this.scorePlayer(answer, target);
+    dispatch(playerScore(score));
+  };
+
+  funcTimer = () => {
+    const second = 1000;
+    const { dispatch } = this.props;
+    const myTimeout = setInterval(() => {
+      const { seconds, isToClear } = this.state;
+      if (seconds > 0 && isToClear === false) {
+        this.setState((prevState) => ({
+          seconds: prevState.seconds - 1,
+        }));
+      } else {
+        dispatch(disabledButton(true));
+        clearInterval(myTimeout);
+      }
+    }, second);
   };
 
   shufflerCondition = () => {
@@ -44,18 +91,21 @@ class TriviaQuestion extends Component {
   };
 
   nextIndex = () => {
-    const { dispatch, index } = this.props;
+    const { dispatch, index, history } = this.props;
     const four = 4;
     const buttons = document.querySelectorAll('.answer-button');
     dispatch(indexChange(index + 1));
     dispatch(disabledButton(false));
-    if (index === four) { dispatch(indexChange(index)); }
+    if (index === four) { history.push('/feedback'); }
     this.setState({
       shuffler: true,
+      seconds: 30,
+      isToClear: false,
     });
     buttons.forEach((element) => {
       element.className = 'answer-button';
     });
+    this.funcTimer();
   };
 
   render() {
@@ -67,9 +117,11 @@ class TriviaQuestion extends Component {
     const { question, category } = eachQuestion;
     const correctAnswer = eachQuestion.correct_answer;
     const shuffledAnswers = this.shufflerCondition();
+    const { seconds } = this.state;
     return (
       <>
-        <Timer />
+        <Timer funcTimer={ this.funcTimer } />
+        <div>{seconds}</div>
         <h3 data-testid="question-category">
           {category}
         </h3>
@@ -81,7 +133,7 @@ class TriviaQuestion extends Component {
             <li key={ index } data-testid="answer-options">
               <button
                 className="answer-button"
-                onClick={ () => this.handleClick(correctAnswer) }
+                onClick={ ({ target }) => this.handleClick(correctAnswer, target.value) }
                 value={ answer }
                 data-testid={
                   answer === correctAnswer
@@ -97,12 +149,14 @@ class TriviaQuestion extends Component {
         </div>
         {
           isDisabled
-        && <button
-          data-testid="btn-next"
-          onClick={ this.nextIndex }
-        >
-          Next
-           </button>
+        && (
+          <button
+            data-testid="btn-next"
+            onClick={ this.nextIndex }
+          >
+            Next
+          </button>
+        )
         }
       </>
     );
@@ -113,6 +167,9 @@ TriviaQuestion.propTypes = {
     correct_answer: PropTypes.string,
     incorrect_answers: PropTypes.arrayOf(PropTypes.string),
     category: PropTypes.string,
+  }),
+  history: PropTypes.shape({
+    push: PropTypes.func,
   }),
 }.isRequired;
 

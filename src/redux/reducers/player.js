@@ -1,4 +1,4 @@
-import { GET_LOGIN } from '../actions';
+import { GET_LOGIN, PLAYER_SCORE } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -7,16 +7,20 @@ const INITIAL_STATE = {
   gravatarEmail: '',
 };
 
-export const login = (state = INITIAL_STATE, action) => {
+export const player = (state = INITIAL_STATE, action) => {
   switch (action.type) {
-  case GET_LOGIN: {
-    return {
+  case GET_LOGIN:
+    return ({
       ...state,
       name: action.payload.name,
       gravatarEmail: action.payload.email,
-      // score: action.payload.score,
+    });
+
+  case PLAYER_SCORE:
+    return {
+      ...state,
+      score: state.score + action.payload,
     };
-  }
   default:
     return state;
   }
