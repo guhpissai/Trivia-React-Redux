@@ -1,0 +1,66 @@
+/* feedback css */
+body {
+  background-image: url('./images/background.png');
+}
+
+.feedback-container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin: 0 auto;
+  max-width: 960px;
+}
+
+.score-container {
+  background-color: #6845ce;
+  border-radius: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  max-width: 280px;
+  padding: 40px 100px;
+}
+
+.score-container p, span {
+  align-items: center;
+  color: white;
+  display: flex;
+  font-size: 22px;
+  font-weight: 700;
+  margin: 4px 0;
+  text-align: start;
+}
+
+.score-container p {
+  margin-left: 4px;
+}
+
+.scoreboard span:nth-child( 1 ):before {
+  content: url('./images/grade_FILL1_wght400_GRAD0_opsz24.svg');
+  margin-right: 10px;
+}
+
+.scoreboard span:nth-child( 2 ):before {
+  content: url('./images/check_circle_FILL1_wght400_GRAD0_opsz24.svg');
+  margin-right: 10px;
+}
+
+.buttons-feedback {
+  display: flex;
+  flex-wrap: wrap;
+  margin: 20px auto;
+  max-height: 100px;
+  max-width: 260px;
+}
+
+.buttons-feedback button {
+  background-color: #954497;
+  color: white;
+  font-weight: 700;
+  margin: 4px 0;
+}
+
+.buttons-feedback button:nth-last-of-type( 1 ) {
+  background-color: #2b88ec00;
+  border: 2px solid rgb(195, 195, 195);
+}
