@@ -35,7 +35,7 @@ class Feedback extends Component {
             </span>
             <span>
               {' '}
-              Questions right:
+              Right Questions:
               <p data-testid="feedback-total-question">
                 {assertions}
               </p>

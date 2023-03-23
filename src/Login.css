@@ -45,6 +45,9 @@ h2 {
   width: 100%;
 }
 
+.login-form input {
+  padding-left: 10px;
+}
 
 .login-form button {
   margin-top: 10px;

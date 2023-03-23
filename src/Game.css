@@ -3,26 +3,25 @@ body {
 }
 
 .game {
-  display: flex;
-  justify-content: center;
   align-items: center;
-  background-color: #6845CE;
+  background-color: #6845ce;
   border-radius: 20px;
   color: white;
-  margin: 10px auto;
+  display: flex;
   height: 300px;
-  width: 960px;
+  justify-content: center;
+  margin: 10px auto;
   padding: 40px 0;
+  width: 960px;
 }
 
 .background-game {
-  max-width: 1920px;
   height: 975px;
+  max-width: 1920px;
 }
 
 .game-container {
   color: white;
-  display: flex;
   display: flex;
   justify-content: space-between;
   margin: 0 auto;
@@ -30,8 +29,8 @@ body {
 
 .question-container {
   height: 300px;
-  max-width: 400px;
   margin: 0 40px;
+  max-width: 400px;
 }
 
 .buttons-container {
@@ -42,7 +41,8 @@ body {
 }
 
 .answer-button {
-  color: #4867e6;
+  background-color: #2b88ec;
+  color: #07509f;
   font-weight: 700;
 }
 
@@ -73,21 +73,16 @@ li button {
 
 .seconds {
   font-size: 1.45rem;
-  margin-bottom: 10px;
   font-weight: 700;
-}
-
-.answer-button {
-  background-color: #2B88EC;
-  color: #07509F;
+  margin-bottom: 10px;
 }
 
 .next-button {
+  background-color: #d492d6;
   color: #954497;
-  background-color: #D492D6;
-  max-height: 50px;
+  font-weight: 700;
   margin: 20px auto;
+  max-height: 45px;
   width: 300px;
-  font-weight: bold;
 }
 
