@@ -10,17 +10,22 @@ class Header extends Component {
     const hash = md5(email).toString();
     return (
       <div className="header-background">
-        <div className="header">
-          <img
-            data-testid="header-profile-picture"
-            src={ `https://www.gravatar.com/avatar/${hash}` }
-            alt="Imagem do Usuario"
-          />
-          <p data-testid="header-player-name">
-            {userName}
-          </p>
-          <p data-testid="header-score">{ score }</p>
-        </div>
+        <section className="header">
+          <div className="profile">
+            <img
+              data-testid="header-profile-picture"
+              src={ `https://www.gravatar.com/avatar/${hash}` }
+              alt="Imagem do Usuario"
+            />
+            <p data-testid="header-player-name">
+              {userName}
+            </p>
+          </div>
+          <div className="score">
+            <p>Score</p>
+            <p data-testid="header-score">{ score }</p>
+          </div>
+        </section>
       </div>
     );
   }

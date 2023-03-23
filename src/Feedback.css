@@ -1,0 +1,59 @@
+body {
+  background-image: url('./images/background.png');
+}
+
+.feedback-container {
+  display: flex;
+  justify-content: center;
+  max-width: 960px;
+  flex-wrap: wrap;
+  margin: 0 auto;
+}
+
+.score-container {
+  display: flex;
+  max-width: 280px;
+  margin: 20px auto;
+  flex-wrap: wrap;
+  background-color: #6845CE;
+  padding: 40px 100px;
+  border-radius: 20px;
+}
+
+.score-container p {
+  display: flex;
+  font-size: 22px;
+  margin: 4px 0;
+  text-align: start;
+  color: white;
+  font-weight: bold;
+  align-items: center;
+}
+
+.scoreboard p:nth-child(1)::before {
+  content: url('./images/grade_FILL1_wght400_GRAD0_opsz24.svg');
+  margin-right: 10px;
+}
+
+.scoreboard p:nth-child(2)::before {
+  content: url('./images/check_circle_FILL1_wght400_GRAD0_opsz24.svg');
+  margin-right: 10px;
+}
+
+.buttons-feedback {
+  display: flex;
+  flex-wrap: wrap;
+  max-width: 260px;
+  max-height: 100px;
+  margin: 20px auto;
+}
+
+.buttons-feedback button {
+  margin: 4px 0;
+  background-color: #954497;
+}
+
+.buttons-feedback button:nth-last-of-type(1) {
+  background-color: #2b88ec00;
+  border: 1px solid black;
+}

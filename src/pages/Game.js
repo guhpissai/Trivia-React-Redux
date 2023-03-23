@@ -22,10 +22,12 @@ class Game extends Component {
     const first = questions.results[index];
     return (
       <div className="background-game">
-        <Header />
-        <div className="game">
-          <TriviaQuestion eachQuestion={ first } history={ history } />
-        </div>
+        <section className="interface">
+          <Header />
+          <div className="game">
+            <TriviaQuestion eachQuestion={ first } history={ history } />
+          </div>
+        </section>
       </div>
     );
   }

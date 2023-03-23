@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import Header from '../components/Header';
+import '../Feedback.css';
 
 class Feedback extends Component {
   handleAgain = () => {
@@ -18,30 +19,36 @@ class Feedback extends Component {
     const { assertions, score } = this.props;
     const three = 3;
     return (
-      <div>
+      <section className="feedback-container">
         <Header />
-        <p data-testid="feedback-text">
-          {
-            assertions < three ? 'Could be better...' : 'Well Done!'
-          }
-        </p>
-        <div className="scoreboard">
-          <p data-testid="feedback-total-score">{ score }</p>
-          <p data-testid="feedback-total-question">{ assertions }</p>
+        <div className="score-container">
+          <p data-testid="feedback-text">
+            {
+              assertions < three ? 'Could be better...' : 'Well Done!'
+            }
+          </p>
+          <div className="scoreboard">
+            <p data-testid="feedback-total-score">{ `Your score ${score}` }</p>
+            <p data-testid="feedback-total-question">
+              { `You got ${assertions} questions right` }
+            </p>
+          </div>
         </div>
-        <button
-          data-testid="btn-play-again"
-          onClick={ this.handleAgain }
-        >
-          Play Again
-        </button>
-        <button
-          data-testid="btn-ranking"
-          onClick={ this.handleRanking }
-        >
-          Ver Ranking
-        </button>
-      </div>
+        <div className="buttons-feedback">
+          <button
+            data-testid="btn-play-again"
+            onClick={ this.handleAgain }
+          >
+            Play Again
+          </button>
+          <button
+            data-testid="btn-ranking"
+            onClick={ this.handleRanking }
+          >
+            Ver Ranking
+          </button>
+        </div>
+      </section>
     );
   }
 }
