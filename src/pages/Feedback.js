@@ -28,10 +28,18 @@ class Feedback extends Component {
             }
           </p>
           <div className="scoreboard">
-            <p data-testid="feedback-total-score">{ `Your score ${score}` }</p>
-            <p data-testid="feedback-total-question">
-              { `You got ${assertions} questions right` }
-            </p>
+            <span>
+              {' '}
+              Your score:
+              <p data-testid="feedback-total-score">{score}</p>
+            </span>
+            <span>
+              {' '}
+              Questions right:
+              <p data-testid="feedback-total-question">
+                {assertions}
+              </p>
+            </span>
           </div>
         </div>
         <div className="buttons-feedback">

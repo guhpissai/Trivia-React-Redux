@@ -20,7 +20,7 @@ body {
   border-radius: 20px;
 }
 
-.score-container p {
+.score-container p, span {
   display: flex;
   font-size: 22px;
   margin: 4px 0;
@@ -30,12 +30,16 @@ body {
   align-items: center;
 }
 
-.scoreboard p:nth-child(1)::before {
+.score-container p {
+  margin-left: 4px;
+}
+
+.scoreboard span:nth-child(1)::before {
   content: url('./images/grade_FILL1_wght400_GRAD0_opsz24.svg');
   margin-right: 10px;
 }
 
-.scoreboard p:nth-child(2)::before {
+.scoreboard span:nth-child(2)::before {
   content: url('./images/check_circle_FILL1_wght400_GRAD0_opsz24.svg');
   margin-right: 10px;
 }
