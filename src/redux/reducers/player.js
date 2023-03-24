@@ -1,4 +1,4 @@
-import { GET_LOGIN, PLAYER_SCORE, HITS } from '../actions';
+import { GET_LOGIN, PLAYER_SCORE, HITS, RESET_LOGIN } from '../actions';
 
 const INITIAL_STATE = {
   name: '',
@@ -24,6 +24,10 @@ export const player = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       assertions: state.assertions + 1,
+    };
+  case RESET_LOGIN:
+    return {
+      ...INITIAL_STATE,
     };
   default:
     return state;

@@ -1,12 +1,11 @@
 import { NEW_QUESTIONS,
-  ISDISABLED_BUTTON,
   INDEX_QUESTION,
   QUESTION_SELECTED,
-  NEXT_TIMER } from '../actions';
+  NEXT_TIMER,
+  RESET_INDEX } from '../actions';
 
 const INITIAL_STATE = {
   questions: [],
-  isDisabled: false,
   indexQuestions: 0,
   questionSelected: false,
   nextBoolean: false,
@@ -18,12 +17,6 @@ export const game = (state = INITIAL_STATE, action) => {
     return ({
       ...state,
       questions: action.payload,
-    });
-
-  case ISDISABLED_BUTTON:
-    return ({
-      ...state,
-      isDisabled: action.payload,
     });
 
   case INDEX_QUESTION:
@@ -42,6 +35,11 @@ export const game = (state = INITIAL_STATE, action) => {
     return {
       ...state,
       nextBoolean: !state.nextBoolean,
+    };
+
+  case RESET_INDEX:
+    return {
+      ...INITIAL_STATE,
     };
 
   default:
