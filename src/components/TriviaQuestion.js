@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Timer from './Timer';
 import '../Game.css';
 import {
-  disabledButton,
   indexChange,
   playerScore,
   hits,
