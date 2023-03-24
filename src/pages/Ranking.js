@@ -15,20 +15,20 @@ class Ranking extends Component {
     return (
       <div>
         <div data-testid="ranking-title">Ranking</div>
-        {rankingsLocalStorage.sort((a, b) => b[2] - a[2]).map((teste, index) => (
+        {rankingsLocalStorage.sort((a, b) => b.score - a.score).map((player, index) => (
           <section key={ index }>
             <div>
               <img
                 data-testid="header-profile-picture"
-                src={ `https://www.gravatar.com/avatar/${md5(teste[0]).toString()}` }
+                src={ `https://www.gravatar.com/avatar/${md5(player.email).toString()}` }
                 alt="Imagem do Usuario"
               />
               <p data-testid={ `player-name-${index}` }>
-                { teste[1] }
+                { player.userName }
               </p>
               <p>Score</p>
               <p data-testid={ `player-score-${index}` }>
-                { teste[2] }
+                { player.score }
               </p>
             </div>
           </section>

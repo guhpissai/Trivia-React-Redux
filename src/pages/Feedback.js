@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-// import { RANKING_LOCAL_STORAGE } from '../helpers/localstorage';
 import Header from '../components/Header';
 import '../Feedback.css';
 
@@ -25,7 +24,7 @@ class Feedback extends Component {
   saveRankingList = () => {
     const { score, email, userName } = this.props;
     const storageAgr = this.getSavedRanking();
-    const rankingList = [...storageAgr, [email, userName, score]];
+    const rankingList = [...storageAgr, { email, userName, score }];
     localStorage.setItem('Ranking', JSON.stringify(rankingList));
   };
 
