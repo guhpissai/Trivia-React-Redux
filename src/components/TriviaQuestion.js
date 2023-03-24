@@ -123,7 +123,7 @@ class TriviaQuestion extends Component {
     return (
       <div>
         <Timer funcTimer={ this.funcTimer } />
-        <p className="seconds">{seconds}</p>
+        <p className="seconds" data-testid="clock">{ `🕗 ${seconds}` }</p>
         <div className="game-container">
           <div className="question-container">
             <h3 data-testid="question-category">
@@ -134,9 +134,13 @@ class TriviaQuestion extends Component {
             </h2>
           </div>
           <div className="buttons-container">
-            {shuffledAnswers.map((answer, index) => (
-              <li key={ index } data-testid="answer-options">
+            <li
+              data-testid="answer-options"
+              className="button-list"
+            >
+              {shuffledAnswers.map((answer, index) => (
                 <button
+                  key={ index }
                   className="answer-button"
                   onClick={ ({ target }) => this.handleClick(
                     correctAnswer,
@@ -152,20 +156,21 @@ class TriviaQuestion extends Component {
                 >
                   { answer }
                 </button>
-              </li>
-            ))}
-            {
-              isDisabled
-        && (
-          <button
-            className="next-button"
-            data-testid="btn-next"
-            onClick={ this.nextIndex }
-          >
-            Next
-          </button>
-        )
-            }
+
+              ))}
+              {
+                isDisabled
+                   && (
+                     <button
+                       className="next-button"
+                       data-testid="btn-next"
+                       onClick={ this.nextIndex }
+                     >
+                       Next
+                     </button>
+                   )
+              }
+            </li>
           </div>
         </div>
       </div>
