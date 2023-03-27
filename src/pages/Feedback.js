@@ -12,7 +12,20 @@ class Feedback extends Component {
 
   handleRanking = () => {
     const { history } = this.props;
+    this.saveRankingList();
     history.push('/ranking');
+  };
+
+  getSavedRanking = () => {
+    const rankingsSaved = localStorage.getItem('Ranking');
+    return rankingsSaved ? JSON.parse(rankingsSaved) : [];
+  };
+
+  saveRankingList = () => {
+    const { score, email, userName } = this.props;
+    const storageAgr = this.getSavedRanking();
+    const rankingList = [...storageAgr, { email, userName, score }];
+    localStorage.setItem('Ranking', JSON.stringify(rankingList));
   };
 
   render() {
@@ -67,10 +80,14 @@ Feedback.propTypes = {
   }).isRequired,
   assertions: PropTypes.number.isRequired,
   score: PropTypes.number.isRequired,
+  userName: PropTypes.string.isRequired,
+  email: PropTypes.string.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   assertions: state.player.assertions,
+  email: state.player.gravatarEmail,
+  userName: state.player.name,
   score: state.player.score,
 });
 

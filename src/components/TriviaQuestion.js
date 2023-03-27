@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import Timer from './Timer';
 import '../Game.css';
 import {
-  disabledButton,
   indexChange,
   playerScore,
   hits,
@@ -16,6 +15,7 @@ class TriviaQuestion extends Component {
     questions: [],
     isToClear: false,
     seconds: 30,
+    isDisabled: false,
   };
 
   scorePlayer = (answer, target) => {
@@ -51,9 +51,9 @@ class TriviaQuestion extends Component {
         element.className = wrong;
       }
     });
-    dispatch(disabledButton(true));
     this.setState({
       isToClear: true,
+      isDisabled: true,
     });
     const score = this.scorePlayer(answer, target);
     dispatch(playerScore(score));
@@ -61,7 +61,6 @@ class TriviaQuestion extends Component {
 
   funcTimer = () => {
     const second = 1000;
-    const { dispatch } = this.props;
     const myTimeout = setInterval(() => {
       const { seconds, isToClear } = this.state;
       if (seconds > 0 && isToClear === false) {
@@ -69,8 +68,10 @@ class TriviaQuestion extends Component {
           seconds: prevState.seconds - 1,
         }));
       } else {
-        dispatch(disabledButton(true));
         clearInterval(myTimeout);
+        this.setState({
+          isDisabled: true,
+        });
       }
     }, second);
   };
@@ -97,12 +98,12 @@ class TriviaQuestion extends Component {
     const four = 4;
     const buttons = document.querySelectorAll('.answer-button');
     dispatch(indexChange(index + 1));
-    dispatch(disabledButton(false));
     if (index === four) { history.push('/feedback'); }
     this.setState({
       shuffler: true,
       seconds: 30,
       isToClear: false,
+      isDisabled: false,
     });
     buttons.forEach((element) => {
       element.className = 'answer-button';
@@ -112,18 +113,19 @@ class TriviaQuestion extends Component {
 
   render() {
     const correct = 'correct-answer';
-    const { eachQuestion, isDisabled } = this.props;
+    const { eachQuestion } = this.props;
+    console.log(eachQuestion);
     if (!eachQuestion) {
       return (<p>Error</p>);
     }
     const { question, category } = eachQuestion;
     const correctAnswer = eachQuestion.correct_answer;
     const shuffledAnswers = this.shufflerCondition();
-    const { seconds } = this.state;
+    const { seconds, isDisabled } = this.state;
     return (
       <div>
         <Timer funcTimer={ this.funcTimer } />
-        <p className="seconds">{seconds}</p>
+        <p className="seconds" data-testid="clock">{ `🕗 ${seconds}` }</p>
         <div className="game-container">
           <div className="question-container">
             <h3 data-testid="question-category">
@@ -134,10 +136,15 @@ class TriviaQuestion extends Component {
             </h2>
           </div>
           <div className="buttons-container">
-            {shuffledAnswers.map((answer, index) => (
-              <li key={ index } data-testid="answer-options">
+            <li
+              data-testid="answer-options"
+              className="button-list"
+            >
+              {shuffledAnswers.map((answer, index) => (
                 <button
+                  key={ index }
                   className="answer-button"
+                  disabled={ isDisabled }
                   onClick={ ({ target }) => this.handleClick(
                     correctAnswer,
                     target.value,
@@ -148,26 +155,26 @@ class TriviaQuestion extends Component {
                       ? correct
                       : `wrong-answer-${index}`
                   }
-                  disabled={ isDisabled }
                 >
                   { answer }
                 </button>
-              </li>
-            ))}
-            {
-              isDisabled
-        && (
-          <button
-            className="next-button"
-            data-testid="btn-next"
-            onClick={ this.nextIndex }
-          >
-            Next
-          </button>
-        )
-            }
+
+              ))}
+            </li>
           </div>
         </div>
+        {
+          isDisabled
+                   && (
+                     <button
+                       className="next-button"
+                       data-testid="btn-next"
+                       onClick={ this.nextIndex }
+                     >
+                       Next
+                     </button>
+                   )
+        }
       </div>
     );
   }
@@ -184,7 +191,6 @@ TriviaQuestion.propTypes = {
 }.isRequired;
 
 const mapStateToProps = (state) => ({
-  isDisabled: state.game.isDisabled,
   index: state.game.indexQuestions,
 });
 

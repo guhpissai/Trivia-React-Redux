@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
-import { newQuestions, getLogin } from '../redux/actions';
+import { newQuestions, getLogin, resetLogin, resetIndex } from '../redux/actions';
 import { getTriviaToken, getTriviaQuestions } from '../services/apiTrivia';
 import { SET_LOCAL_STORAGE } from '../helpers/localstorage';
 import logo from '../trivia.png';
@@ -13,6 +13,12 @@ class Login extends Component {
     name: '',
     email: '',
   };
+
+  componentDidMount() {
+    const { dispatch } = this.props;
+    dispatch(resetLogin());
+    dispatch(resetIndex());
+  }
 
   handleChange = ({ target }) => {
     const { name, value } = target;

@@ -5,7 +5,3 @@ export const SET_LOCAL_STORAGE = (key, value) => {
     localStorage.setItem(key, (value));
   }
 };
-
-export const GET_LOCAL_STORAGE = () => {
-  localStorage.getItem(JSON.parse('token'));
-};

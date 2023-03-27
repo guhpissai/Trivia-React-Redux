@@ -6,19 +6,23 @@ import Header from '../components/Header';
 import '../Game.css';
 
 class Game extends Component {
+  componentDidMount() {
+    this.tokenCheck();
+  }
+
   tokenCheck = () => {
     const { history, questions } = this.props;
     const responseCode = questions.response_code;
     const invalidToken = 3;
     if (responseCode === invalidToken) {
-      localStorage.clear();
+      localStorage.clear('token');
       history.push('/');
     }
   };
 
   render() {
-    this.tokenCheck();
     const { questions, index, history } = this.props;
+    console.log(questions, index);
     const first = questions.results[index];
     return (
       <div className="background-game">

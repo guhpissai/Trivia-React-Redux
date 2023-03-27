@@ -54,7 +54,7 @@ li {
 
 li button {
   box-shadow: 0 8px 10px #3a3a3a80;
-  margin: auto;
+  margin: 4px;
   padding: 12px 0;
   width: 300px;
 }
@@ -80,8 +80,8 @@ li button {
 .next-button {
   background-color: #d492d6;
   color: #954497;
-  font-weight: 700;
-  margin: 20px auto;
+  font-weight: 100;
+  margin-left: 280px;
   max-height: 45px;
   width: 300px;
 }
